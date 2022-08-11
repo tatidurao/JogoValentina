@@ -155,21 +155,22 @@ function draw()
   {
     bunny.changeAnimation('eating');
     eating_sound.play();
-    gameOver();
+    setTimeout ( ()=>{
+      gameOver();
+      bk_song.stop();
+    },2000)
+   
   }
 
-  if(fruit!=null && fruit.position.y>=600)
+  if(fruit!=null && fruit.position.y>=canH-30)
   {
     bunny.changeAnimation('crying');
     bk_song.stop();
     sad_sound.play();
-    fruit=null;
-    
-    
-    
-    
-   
-     
+    fruit=null;   
+    setTimeout ( ()=>{
+    tentenovamente()
+  },1000)
    }
    
 }
@@ -236,6 +237,24 @@ function gameOver() {
       text: "Voce Joga muitooooo!!",
       imageUrl:
         "valentina.jpg",
+      imageSize: "150x150",
+      confirmButtonText: "Jogar Novamente"
+    },
+    function(isConfirm) {
+      if (isConfirm) {
+        location.reload();
+      }
+    }
+  );
+}
+
+function tentenovamente() {
+  swal(
+    {
+      title: `Tente novamente`,
+      text: "Clique no botao",
+      imageUrl:
+        "sad_3.png",
       imageSize: "150x150",
       confirmButtonText: "Jogar Novamente"
     },
